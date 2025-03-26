@@ -195,7 +195,7 @@ env:
   FB_APP_SECRET: ""
   FB_VERIFY_TOKEN: ""
   FORCE_SSL: false
-  FRONTEND_URL: "http://0.0.0.0:3000"
+  FRONTEND_URL: "https://checkgrow.wizzyweb.in"
   INSTALLATION_ENV: helm
   IOS_APP_ID: 6C953F3RX2.com.checkgrow.app
   LOG_LEVEL: info
