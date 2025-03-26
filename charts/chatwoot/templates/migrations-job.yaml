@@ -3,7 +3,7 @@ kind: Job
 metadata:
   name: "{{ .Release.Name }}-migrate"
   labels:
-    app: {{ template "chatwoot.fullname" . }}
+    app: {{ template "checkgrow.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
@@ -36,7 +36,7 @@ spec:
         args:
           - -c
           - >-
-            PG_READY="pg_isready -h {{ template "chatwoot.postgresql.host" . }} -p {{ template "chatwoot.postgresql.port" . }}";
+            PG_READY="pg_isready -h {{ template "checkgrow.postgresql.host" . }} -p {{ template "checkgrow.postgresql.port" . }}";
             until $PG_READY;
             do
               sleep 2;
@@ -45,7 +45,7 @@ spec:
       - name: init-redis
         image: busybox:1.28
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        command: ["sh", "-c", "until nslookup {{ template "chatwoot.redis.host" . }} ; do echo waiting for {{ template "chatwoot.redis.host" . }} ; sleep 2; done;"]
+        command: ["sh", "-c", "until nslookup {{ template "checkgrow.redis.host" . }} ; do echo waiting for {{ template "checkgrow.redis.host" . }} ; sleep 2; done;"]
       containers:
       - name: "db-migrate-job"
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -53,7 +53,7 @@ spec:
         - bundle
         - exec
         - rails
-        - db:chatwoot_prepare
+        - db:checkgrow_prepare
         env:
         {{- if .Values.postgresql.auth.existingSecret }}
         - name: POSTGRES_PASSWORD
@@ -71,7 +71,7 @@ spec:
         {{- end }}
         envFrom:
           - secretRef:
-              name: {{ template "chatwoot.fullname" . }}-env
+              name: {{ template "checkgrow.fullname" . }}-env
         {{- if .Values.existingEnvSecret }}
           - secretRef:
               name: {{ .Values.existingEnvSecret }}
@@ -80,7 +80,7 @@ spec:
         volumeMounts:
             - name: cache
               mountPath: /app/tmp
-      serviceAccountName: {{ include "chatwoot.serviceAccountName" . }}
+      serviceAccountName: {{ include "checkgrow.serviceAccountName" . }}
       {{- if .Values.securityContext }}
       securityContext: {{ .Values.securityContext | toYaml | nindent 8 }}
       {{- end }}

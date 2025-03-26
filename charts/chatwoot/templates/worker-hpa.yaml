@@ -2,9 +2,9 @@
 apiVersion: {{ .Values.autoscaling.apiVersion }}
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ template "chatwoot.fullname" . }}-worker
+  name: {{ template "checkgrow.fullname" . }}-worker
   labels:
-    app: {{ template "chatwoot.fullname" . }}
+    app: {{ template "checkgrow.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
@@ -12,7 +12,7 @@ spec:
   scaleTargetRef:
     kind: Deployment
     apiVersion: apps/v1
-    name: {{ template "chatwoot.fullname" . }}-worker
+    name: {{ template "checkgrow.fullname" . }}-worker
   minReplicas: {{ .Values.worker.hpa.minpods }}
   maxReplicas: {{ .Values.worker.hpa.maxpods }}
   metrics:

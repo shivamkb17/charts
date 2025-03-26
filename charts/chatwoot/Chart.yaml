@@ -8,11 +8,11 @@ dependencies:
     name: redis
     repository: https://charts.bitnami.com/bitnami
     version: 16.12.2
-name: chatwoot
+name: checkgrow
 description: Open-source customer engagement suite, an alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬
 type: application
 keywords:
-  - chatwoot
+  - checkgrow
   - open source
   - customer support
   - chat
@@ -21,14 +21,14 @@ keywords:
   - crm
 maintainers:
   - name: vishnu-narayanan
-    email: vishnu@chatwoot.com
+    email: vishnu@checkgrow.com
   - name: sojan-official
-    email: sojan@chatwoot.com
-home: https://github.com/chatwoot/charts
-icon: https://chatwoot-public-assets.s3.amazonaws.com/logo/square.png
+    email: sojan@checkgrow.com
+home: https://github.com/checkgrow/charts
+icon: https://checkgrow-public-assets.s3.amazonaws.com/logo/square.png
 sources:
   - https://github.com/checkgrow/checkgrow
-  - http://www.chatwoot.com
+  - http://www.checkgrow.com
 
 # This is the chart version.
 version: 1.1.20

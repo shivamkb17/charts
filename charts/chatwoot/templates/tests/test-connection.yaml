@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "chatwoot.fullname" . }}-test-connection"
+  name: "{{ include "checkgrow.fullname" . }}-test-connection"
   labels:
-    app: {{ template "chatwoot.fullname" . }}
+    app: {{ template "checkgrow.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
@@ -23,5 +23,5 @@ spec:
       image: busybox
       imagePullPolicy: IfNotPresent
       command: ['wget']
-      args: ['{{ include "chatwoot.fullname" . }}:{{ .Values.services.targetPort }}']
+      args: ['{{ include "checkgrow.fullname" . }}:{{ .Values.services.targetPort }}']
   restartPolicy: Never

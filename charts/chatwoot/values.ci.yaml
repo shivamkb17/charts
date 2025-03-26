@@ -17,7 +17,7 @@ postgresql:
   architecture: standalone
   auth:
     username: postgres
-    database: chatwoot_production
+    database: checkgrow_production
     #password for the admin user
     postgresPassword: postgres
 

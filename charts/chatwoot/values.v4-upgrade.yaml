@@ -6,4 +6,4 @@ image:
 postgresql:
   image:
     registry: ghcr.io
-    repository: chatwoot/pgvector
+    repository: checkgrow/pgvector

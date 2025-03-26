@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "chatwoot.fullname" . }}-worker
+  name: {{ template "checkgrow.fullname" . }}-worker
   creationTimestamp: null
   labels:
-    app: {{ template "chatwoot.fullname" . }}
+    app: {{ template "checkgrow.fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
@@ -12,7 +12,7 @@ spec:
   replicas: {{ int .Values.worker.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "chatwoot.fullname" . }}
+      app: {{ template "checkgrow.fullname" . }}
       release: "{{ .Release.Name }}"
       role: worker
   strategy: {}
@@ -20,7 +20,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: {{ template "chatwoot.fullname" . }}
+        app: {{ template "checkgrow.fullname" . }}
         release: "{{ .Release.Name }}"
         role: worker
       annotations:
@@ -64,7 +64,7 @@ spec:
           {{- end }}
           envFrom:
             - secretRef:
-                name: {{ template "chatwoot.fullname" . }}-env
+                name: {{ template "checkgrow.fullname" . }}-env
           {{- if .Values.existingEnvSecret }}
             - secretRef:
                 name: {{ .Values.existingEnvSecret }}
@@ -79,7 +79,7 @@ spec:
           volumeMounts:
             - name: cache
               mountPath: /app/tmp
-      serviceAccountName: {{ include "chatwoot.serviceAccountName" . }}
+      serviceAccountName: {{ include "checkgrow.serviceAccountName" . }}
       {{- if .Values.securityContext }}
       securityContext: {{ .Values.securityContext | toYaml | nindent 8 }}
       {{- end }}

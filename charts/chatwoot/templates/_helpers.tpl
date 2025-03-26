@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "chatwoot.name" -}}
+{{- define "checkgrow.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "chatwoot.fullname" -}}
+{{- define "checkgrow.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "chatwoot.chart" -}}
+{{- define "checkgrow.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "chatwoot.labels" -}}
-helm.sh/chart: {{ include "chatwoot.chart" . }}
-{{ include "chatwoot.selectorLabels" . }}
+{{- define "checkgrow.labels" -}}
+helm.sh/chart: {{ include "checkgrow.chart" . }}
+{{ include "checkgrow.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,24 +45,24 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "chatwoot.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "chatwoot.name" . }}
+{{- define "checkgrow.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "checkgrow.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "chatwoot.serviceAccountName" -}}
+{{- define "checkgrow.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "chatwoot.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "checkgrow.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
 
 
-{{- define "chatwoot.postgresql.fullname" -}}
+{{- define "checkgrow.postgresql.fullname" -}}
 {{- if .Values.postgresql.fullnameOverride -}}
 {{- .Values.postgresql.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -70,12 +70,12 @@ Create the name of the service account to use
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name "chatwoot-postgresql" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name "checkgrow-postgresql" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
 
-{{- define "chatwoot.redis.fullname" -}}
+{{- define "checkgrow.redis.fullname" -}}
 {{- if .Values.redis.fullnameOverride -}}
 {{- .Values.redis.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -83,7 +83,7 @@ Create the name of the service account to use
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name "chatwoot-redis" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name "checkgrow-redis" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
@@ -92,9 +92,9 @@ Create the name of the service account to use
 {{/*
 Set postgres host
 */}}
-{{- define "chatwoot.postgresql.host" -}}
+{{- define "checkgrow.postgresql.host" -}}
 {{- if .Values.postgresql.enabled -}}
-{{- template "chatwoot.postgresql.fullname" . -}}
+{{- template "checkgrow.postgresql.fullname" . -}}
 {{- else -}}
 {{- .Values.postgresql.postgresqlHost -}}
 {{- end -}}
@@ -103,18 +103,18 @@ Set postgres host
 {{/*
 Set postgres secret
 */}}
-{{- define "chatwoot.postgresql.secret" -}}
+{{- define "checkgrow.postgresql.secret" -}}
 {{- if .Values.postgresql.enabled -}}
-{{- template "chatwoot.postgresql.fullname" . -}}
+{{- template "checkgrow.postgresql.fullname" . -}}
 {{- else -}}
-{{- template "chatwoot.fullname" . -}}
+{{- template "checkgrow.fullname" . -}}
 {{- end -}}
 {{- end -}}
 
 {{/*
 Set postgres secretKey
 */}}
-{{- define "chatwoot.postgresql.secretKey" -}}
+{{- define "checkgrow.postgresql.secretKey" -}}
 {{- if .Values.postgresql.enabled -}}
 "postgresql-password"
 {{- else -}}
@@ -125,7 +125,7 @@ Set postgres secretKey
 {{/*
 Set postgres port
 */}}
-{{- define "chatwoot.postgresql.port" -}}
+{{- define "checkgrow.postgresql.port" -}}
 {{- if .Values.postgresql.enabled -}}
     5432
 {{- else -}}
@@ -136,9 +136,9 @@ Set postgres port
 {{/*
 Set redis host
 */}}
-{{- define "chatwoot.redis.host" -}}
+{{- define "checkgrow.redis.host" -}}
 {{- if .Values.redis.enabled -}}
-{{- template "chatwoot.redis.fullname" . -}}-master
+{{- template "checkgrow.redis.fullname" . -}}-master
 {{- else -}}
 {{- .Values.redis.host }}
 {{- end -}}
@@ -147,18 +147,18 @@ Set redis host
 {{/*
 Set redis secret
 */}}
-{{- define "chatwoot.redis.secret" -}}
+{{- define "checkgrow.redis.secret" -}}
 {{- if .Values.redis.enabled -}}
-{{- template "chatwoot.redis.fullname" . -}}
+{{- template "checkgrow.redis.fullname" . -}}
 {{- else -}}
-{{- template "chatwoot.fullname" . -}}
+{{- template "checkgrow.fullname" . -}}
 {{- end -}}
 {{- end -}}
 
 {{/*
 Set redis secretKey
 */}}
-{{- define "chatwoot.redis.secretKey" -}}
+{{- define "checkgrow.redis.secretKey" -}}
 {{- if .Values.redis.enabled -}}
 "redis-password"
 {{- else -}}
@@ -169,7 +169,7 @@ Set redis secretKey
 {{/*
 Set redis port
 */}}
-{{- define "chatwoot.redis.port" -}}
+{{- define "checkgrow.redis.port" -}}
 {{- if .Values.redis.enabled -}}
     6379
 {{- else -}}
@@ -180,7 +180,7 @@ Set redis port
 {{/*
 Set redis password
 */}}
-{{- define "chatwoot.redis.password" -}}
+{{- define "checkgrow.redis.password" -}}
 {{- if .Values.redis.enabled -}}
 {{- default "redis" .Values.redis.auth.password -}}
 {{- else -}}
@@ -191,9 +191,9 @@ Set redis password
 {{/*
 Set redis URL
 */}}
-{{- define "chatwoot.redis.url" -}}
+{{- define "checkgrow.redis.url" -}}
 {{- if .Values.redis.enabled -}}
-    redis://:{{ .Values.redis.auth.password }}@{{ template "chatwoot.redis.host" . }}:{{ template "chatwoot.redis.port" . }}
+    redis://:{{ .Values.redis.auth.password }}@{{ template "checkgrow.redis.host" . }}:{{ template "checkgrow.redis.port" . }}
 {{- else if .Values.env.REDIS_TLS -}}
     rediss://:$(REDIS_PASSWORD)@{{ .Values.redis.host }}:{{ .Values.redis.port }}
 {{- else -}}

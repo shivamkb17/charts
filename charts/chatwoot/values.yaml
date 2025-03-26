@@ -1,4 +1,4 @@
-# Default values for chatwoot
+# Default values for checkgrow
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 # Overrides the image tag whose default is the chart appVersion.
@@ -54,7 +54,7 @@ worker:
     #   memory: 256Mi
 
 services:
-  name: chatwoot
+  name: checkgrow
   internalPort: 3000
   targetPort: 3000
   type: LoadBalancer
@@ -109,7 +109,7 @@ ingress:
           pathType: Prefix
           backend:
             service:
-              name: chatwoot
+              name: checkgrow
               port:
                 number: 3000
   tls: []
@@ -125,14 +125,14 @@ affinity: {}
 
 postgresql:
   enabled: true
-  nameOverride: chatwoot-postgresql
+  nameOverride: checkgrow-postgresql
   image:
     registry: ghcr.io
-    repository: chatwoot/pgvector
+    repository: checkgrow/pgvector
   auth:
     username: postgres
     postgresPassword: postgres
-    database: chatwoot_production
+    database: checkgrow_production
     # when existingSecret is defined auth.password, auth.PostgressPassword
     # is ignored.
     # existingSecret: secret-name
@@ -145,7 +145,7 @@ postgresql:
 
 redis:
   enabled: true
-  nameOverride: chatwoot-redis
+  nameOverride: checkgrow-redis
   auth:
     password: redis
     # when defined the password field is ignored
@@ -184,7 +184,7 @@ existingEnvSecret: ""
 
 env:
   ACTIVE_STORAGE_SERVICE: local
-  ANDROID_BUNDLE_ID: com.chatwoot.app
+  ANDROID_BUNDLE_ID: com.checkgrow.app
   ANDROID_SHA256_CERT_FINGERPRINT: "AC:73:8E:DE:EB:56:EA:CC:10:87:02:A7:65:37:7B:38:D4:5D:D4:53:F8:3B:FB:D3:C6:28:64:1D:AA:08:1E:D8"
   ASSET_CDN_HOST: ""
   AWS_ACCESS_KEY_ID: ""
@@ -197,7 +197,7 @@ env:
   FORCE_SSL: false
   FRONTEND_URL: "http://0.0.0.0:3000"
   INSTALLATION_ENV: helm
-  IOS_APP_ID: 6C953F3RX2.com.chatwoot.app
+  IOS_APP_ID: 6C953F3RX2.com.checkgrow.app
   LOG_LEVEL: info
   LOG_SIZE: 500
   MAILER_INBOUND_EMAIL_DOMAIN: ""
@@ -229,3 +229,4 @@ env:
   TWITTER_CONSUMER_SECRET: ""
   TWITTER_ENVIRONMENT: ""
   USE_INBOX_AVATAR_FOR_BOT: true
+
