@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # Artifact Hub repository metadata file
 
 repositoryID: 427842be-0ee7-4172-aaf4-2f2ecc4f73c5
@@ -7,3 +8,32 @@ owners:
   - name: sojan-official
     email: sojan@chatwoot.com
 
+=======
+repositoryID: checkgrow
+name: Checkgrow Helm Charts
+organizationName: checkgrow
+url: https://github.com/checkgrow/charts
+logoImageID: checkgrow/logo
+logoURL: https://raw.githubusercontent.com/checkgrow/checkgrow/main/app/assets/images/logo.png
+description: |
+  Helm charts for deploying Checkgrow - A customer engagement platform.
+  This repository contains the official Helm chart for Checkgrow.
+  Checkgrow is an open-source customer engagement suite, an alternative to Intercom, Zendesk, Salesforce Service Cloud etc.
+  🔥💬
+
+  ## Features
+  - Easy deployment to Kubernetes
+  - Scalable architecture
+  - Built-in PostgreSQL and Redis support
+  - Configurable through values.yaml
+  - Supports both web and worker components
+
+  ## Quick Start
+  ```bash
+  helm repo add checkgrow https://checkgrow.github.io/charts
+  helm repo update
+  helm install checkgrow checkgrow/checkgrow
+  ```
+
+  For more information, visit [Checkgrow GitHub](https://github.com/checkgrow/checkgrow) 
+>>>>>>> Stashed changes

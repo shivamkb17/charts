@@ -1,9 +1,16 @@
 apiVersion: v1
 entries:
+<<<<<<< Updated upstream
   chatwoot:
   - apiVersion: v2
     appVersion: v3.16.0
     created: "2025-01-20T12:39:29.726788432Z"
+=======
+  checkgrow:
+  - apiVersion: v2
+    appVersion: v3.16.0
+    created: "2025-03-26T17:48:21.757256+05:30"
+>>>>>>> Stashed changes
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -15,11 +22,19 @@ entries:
       version: 16.12.2
     description: "Open-source customer engagement suite, an alternative to Intercom,
       Zendesk, Salesforce Service Cloud etc. \U0001F525\U0001F4AC"
+<<<<<<< Updated upstream
     digest: 68194a9d1948400c74b75232e0d7620bc5604618ffdd375226592bc109aabb36
     home: https://github.com/chatwoot/charts
     icon: https://chatwoot-public-assets.s3.amazonaws.com/logo/square.png
     keywords:
     - chatwoot
+=======
+    digest: 18e7c634577c11f48d1cf209a273c29882ad2707d4b19abb6ab005fdf1cc344e
+    home: https://github.com/checkgrow/charts
+    icon: https://checkgrow-public-assets.s3.amazonaws.com/logo/square.png
+    keywords:
+    - checkgrow
+>>>>>>> Stashed changes
     - open source
     - customer support
     - chat
@@ -27,6 +42,7 @@ entries:
     - rails
     - crm
     maintainers:
+<<<<<<< Updated upstream
     - email: vishnu@chatwoot.com
       name: vishnu-narayanan
     - email: sojan@chatwoot.com
@@ -2852,3 +2868,18 @@ entries:
     - https://github.com/chatwoot/charts/releases/download/chatwoot-0.5.0/chatwoot-0.5.0.tgz
     version: 0.5.0
 generated: "2025-01-20T12:39:29.727354071Z"
+=======
+    - email: vishnu@checkgrow.com
+      name: vishnu-narayanan
+    - email: sojan@checkgrow.com
+      name: sojan-official
+    name: checkgrow
+    sources:
+    - https://github.com/checkgrow/checkgrow
+    - http://www.checkgrow.com
+    type: application
+    urls:
+    - checkgrow-1.1.20.tgz
+    version: 1.1.20
+generated: "2025-03-26T17:48:21.749943+05:30"
+>>>>>>> Stashed changes
