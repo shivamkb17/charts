@@ -1,5 +1,5 @@
 image:
-  repository: chatwoot/chatwoot
+  repository: checkgrow/checkgrow
   tag: v4.0.1
   pullPolicy: IfNotPresent
 

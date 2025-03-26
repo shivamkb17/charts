@@ -27,7 +27,7 @@ maintainers:
 home: https://github.com/chatwoot/charts
 icon: https://chatwoot-public-assets.s3.amazonaws.com/logo/square.png
 sources:
-  - https://github.com/chatwoot/chatwoot
+  - https://github.com/checkgrow/checkgrow
   - http://www.chatwoot.com
 
 # This is the chart version.
