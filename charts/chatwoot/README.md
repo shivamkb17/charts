@@ -6,7 +6,7 @@
 
 ```
 helm repo add chatwoot https://chatwoot.github.io/charts
-helm install chatwoot chatwoot/chatwoot
+helm install chatwoot checkgrow/checkgrow
 ```
 
 ## Prerequisites
@@ -21,7 +21,7 @@ helm install chatwoot chatwoot/chatwoot
 To install the chart with the release name `chatwoot`:
 
 ```console
-$ helm install chatwoot chatwoot/chatwoot
+$ helm install chatwoot checkgrow/checkgrow
 ```
 
 The command deploys Chatwoot on the Kubernetes cluster in the default configuration. The [parameters](#parameters) section lists the parameters that can be configured during installation.
@@ -48,7 +48,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 | Name                | Description                                          | Value                 |
 | ------------------- | ---------------------------------------------------- | --------------------- |
-| `image.repository`  | Chatwoot image repository                           | `chatwoot/chatwoot`    |
+| `image.repository`  | Chatwoot image repository                           | `checkgrow/checkgrow`    |
 | `image.tag`         | Chatwoot image tag (immutable tags are recommended) | `v3.16.0`              |
 | `image.pullPolicy`  | Chatwoot image pull policy                          | `IfNotPresent`         |
 
@@ -203,7 +203,7 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 ```bash
 $ helm install my-release \
   --set env.FRONTEND_URL="chat.yourdomain.com"\
-    chatwoot/chatwoot
+    checkgrow/checkgrow
 ```
 
 The above command sets the Chatwoot server frontend URL to `chat.yourdoamain.com`.
@@ -211,7 +211,7 @@ The above command sets the Chatwoot server frontend URL to `chat.yourdoamain.com
 Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
 
 ```bash
-$ helm install my-release -f values.yaml chatwoot/chatwoot
+$ helm install my-release -f values.yaml checkgrow/checkgrow
 ```
 
 > **Tip** You can use the default `values.yaml` file.
@@ -247,7 +247,7 @@ helm search repo chatwoot
 
 ```
 #if it is major version update, refer to the changelog before proceeding
-helm upgrade chatwoot chatwoot/chatwoot -f <your-custom-values>.yaml
+helm upgrade chatwoot checkgrow/checkgrow -f <your-custom-values>.yaml
 ```
 ### To 1.x.x
 
@@ -255,7 +255,7 @@ Make sure you are on Chatwoot helm charts version `0.9.0` before upgrading to ve
 
 ```
 helm repo update
-helm upgrade chatwoot chatwoot/chatwoot --version="0.9.0"  -f <your-custom-values>  --debug
+helm upgrade chatwoot checkgrow/checkgrow --version="0.9.0"  -f <your-custom-values>  --debug
 ```
 
 This release changes the postgres and redis versions. This is a breaking change and requires manual data migration if you are not using external postgres and redis.
@@ -273,7 +273,7 @@ Before updating,
 1. Set the replica count to 0 for both Chatwoot web(`.Values.web.replicaCount`) and worker(`.Values.worker.replicaCount`) replica sets. Applying this change
 will bring down the pods count to 0. This is to ensure the database will not be having any activity and is in a state to backup.
 ```
-helm upgrade chatwoot chatwoot/chatwoot --version="0.9.0" --namespace ug3 -f values.ci.yaml --create-namespace --debug
+helm upgrade chatwoot checkgrow/checkgrow --version="0.9.0" --namespace ug3 -f values.ci.yaml --create-namespace --debug
 ```
 
 2. Log into the postgres pod and take a backup of your database.
@@ -303,7 +303,7 @@ helm upgrade chatwoot chatwoot/chatwoot --version="0.9.0" --namespace ug3 -f val
 ```
 helm repo update
 #reset web.replicaCount and worker.replicaCount to your previous values
-helm install chatwoot chatwoot/chatwoot -f <your-values.yaml> #-n chatwoot
+helm install chatwoot checkgrow/checkgrow -f <your-values.yaml> #-n chatwoot
 ```
 
 6. Copy the local db backup into postgres pod.
@@ -359,5 +359,5 @@ not delete your persistent volumes used for Redis, and Postgres and as such your
 ```
 helm delete chatwoot
 helm repo update
-helm install chatwoot chatwoot/chatwoot
+helm install chatwoot checkgrow/checkgrow
 ```
