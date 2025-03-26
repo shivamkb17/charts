@@ -6,8 +6,8 @@ This repository contains helm charts for [Chatwoot](https://chatwoot.com).
 ## Installation
 
 ```bash
-helm repo add chatwoot https://chatwoot.github.io/charts
-helm install chatwoot chatwoot/chatwoot
+helm repo add checkgrow https://shivamkb17.github.io/charts
+helm install checkgrow checkgrow/checkgrow
 ```
 
 ## Questions? Feedback?
